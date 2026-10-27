@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Voters - Online Voting System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <main class="container my-5" id="manage-voters-container">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-1">
+            <li class="breadcrumb-item"><a href="admin-dashboard.html">Admin</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Voters</li>
+          </ol>
+        </nav>
+        <h2 class="fw-bold mb-0 text-dark">Registered Voter Oversight</h2>
+      </div>
+      <div class="badge bg-light text-dark border px-3 py-2">
+        <i class="bi bi-shield-lock me-1"></i> Role-Restricted Admin Console
+      </div>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="card shadow-sm border-0 p-3 mb-4 bg-white">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="input-group">
+            <span class="input-group-text bg-light"><i class="bi bi-search"></i></span>
+            <input type="text" id="voter-search-input" class="form-control" placeholder="Search by name or email address...">
+          </div>
+        </div>
+        <div class="col-md-6 text-md-end mt-2 mt-md-0 text-muted small">
+          Active accounts are permitted to authenticate and cast ballots in published elections.
+        </div>
+      </div>
+    </div>
+
+    <!-- Voters Table -->
+    <div class="card shadow-sm border-0 mb-5">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th style="width: 70px;">ID</th>
+                <th>Full Name</th>
+                <th>Institutional Email</th>
+                <th>Account Status</th>
+                <th>Ballots Cast</th>
+                <th style="width: 140px;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="voters-table-tbody">
+              <tr>
+                <td colspan="6" class="text-center py-4 text-muted">
+                  <div class="spinner-border spinner-border-sm text-primary me-2"></div> Loading voter records...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

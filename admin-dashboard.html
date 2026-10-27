@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Online Voting System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <main class="container my-5" id="admin-dashboard-container">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+      <div>
+        <h2 class="fw-bold mb-0 text-dark">Administrator Control Center</h2>
+        <span class="text-muted small">System telemetry, election controls, and governance</span>
+      </div>
+      <div class="d-flex gap-2">
+        <a href="manage-elections.html" class="btn btn-primary btn-sm">
+          <i class="bi bi-plus-circle me-1"></i> New Election
+        </a>
+        <a href="manage-voters.html" class="btn btn-outline-secondary btn-sm">
+          <i class="bi bi-people me-1"></i> Voter Registry
+        </a>
+      </div>
+    </div>
+
+    <!-- Stat Metrics -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-3">
+        <div class="card stat-card shadow-sm p-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <span class="text-muted small">Registered Voters</span>
+              <h3 class="fw-bold text-primary mb-0" id="stat-total-voters">0</h3>
+            </div>
+            <div class="stat-icon bg-primary-subtle text-primary">
+              <i class="bi bi-people-fill"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card stat-card stat-success shadow-sm p-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <span class="text-muted small">Active Elections</span>
+              <h3 class="fw-bold text-success mb-0" id="stat-active-elections">0</h3>
+            </div>
+            <div class="stat-icon bg-success-subtle text-success">
+              <i class="bi bi-broadcast"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card stat-card stat-warning shadow-sm p-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <span class="text-muted small">Closed Elections</span>
+              <h3 class="fw-bold text-warning mb-0" id="stat-closed-elections">0</h3>
+            </div>
+            <div class="stat-icon bg-warning-subtle text-warning">
+              <i class="bi bi-lock-fill"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card stat-card stat-danger shadow-sm p-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <span class="text-muted small">Total Ballots Cast</span>
+              <h3 class="fw-bold text-danger mb-0" id="stat-total-votes">0</h3>
+            </div>
+            <div class="stat-icon bg-danger-subtle text-danger">
+              <i class="bi bi-check2-all"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Navigation Panels -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-4">
+        <div class="card shadow-sm p-3 h-100 border-0">
+          <h5 class="fw-bold text-dark mb-1"><i class="bi bi-calendar3 me-2 text-primary"></i> Elections Lifecycle</h5>
+          <p class="small text-muted mb-3">Create elections, toggle draft/published/closed states, and adjust results visibility.</p>
+          <a href="manage-elections.html" class="btn btn-outline-primary btn-sm mt-auto">Manage Elections &rarr;</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm p-3 h-100 border-0">
+          <h5 class="fw-bold text-dark mb-1"><i class="bi bi-person-lines-fill me-2 text-primary"></i> Candidate Rosters</h5>
+          <p class="small text-muted mb-3">Add and configure candidates, attach party affiliations, and manage bios and photos.</p>
+          <a href="manage-candidates.html" class="btn btn-outline-primary btn-sm mt-auto">Manage Candidates &rarr;</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm p-3 h-100 border-0">
+          <h5 class="fw-bold text-dark mb-1"><i class="bi bi-person-check me-2 text-primary"></i> Voter Oversight</h5>
+          <p class="small text-muted mb-3">Inspect registered student voters, monitor voting frequency, and toggle active status.</p>
+          <a href="manage-voters.html" class="btn btn-outline-primary btn-sm mt-auto">Manage Voters &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Elections Activity -->
+    <div class="card shadow-sm border-0 mb-5">
+      <div class="card-header bg-white d-flex justify-content-between align-items-center">
+        <h5 class="fw-bold mb-0 text-dark">Recent Election Cycles</h5>
+        <a href="manage-elections.html" class="btn btn-link btn-sm text-decoration-none">View All</a>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Candidates</th>
+                <th>Total Ballots</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="recent-elections-tbody">
+              <tr>
+                <td colspan="6" class="text-center py-4 text-muted">
+                  <div class="spinner-border spinner-border-sm text-primary me-2"></div> Loading recent elections...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
